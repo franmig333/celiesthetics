@@ -272,7 +272,8 @@
 
     /* --- Hero Section --- */
     .hero {
-      height: 85vh;
+      height: 75vh;
+      min-height: 600px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -343,7 +344,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 100px 0;
+      padding: 60px 0;
       background: #080808;
       position: relative;
       z-index: 10;
@@ -597,6 +598,99 @@
       box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
     }
 
+    /* --- Reviews Section --- */
+    .reviews-section {
+      padding: 80px 0 120px 0;
+      text-align: center;
+    }
+
+    .reviews-summary {
+      margin-bottom: 50px;
+    }
+
+    .stars {
+      color: var(--gold-color);
+      font-size: 1.5rem;
+      letter-spacing: 5px;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .reviews-count {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .review-card {
+      background: #111;
+      border: 1px solid rgba(197, 160, 89, 0.2);
+      padding: 40px;
+      max-width: 600px;
+      margin: 0 auto 40px auto;
+      border-radius: 4px;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .review-card:hover {
+      border-color: var(--gold-color);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+      transform: translateY(-5px);
+    }
+
+    .reviewer-name {
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .review-stars {
+      color: var(--gold-color);
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .review-text {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.8;
+      font-style: italic;
+      margin-bottom: 25px;
+    }
+
+    .review-date {
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+    }
+
+    .all-reviews-btn {
+      background: transparent;
+      border: 1px solid rgba(197, 160, 89, 0.5);
+      color: var(--gold-color);
+      padding: 12px 30px;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .all-reviews-btn:hover {
+      background: rgba(197, 160, 89, 0.1);
+      border-color: var(--gold-color);
+      color: #fff;
+    }
+
     .site-footer {
       text-align: center;
       padding: 20px;
@@ -824,6 +918,26 @@
 
   </main>
 
+  <!-- Reviews Section -->
+  <section id="reviews" class="container reviews-section">
+    <h3 class="section-title" data-key="reviewsTitle">RESEÑAS</h3>
+
+    <div class="reviews-summary">
+      <span class="stars">★★★★★</span>
+      <span class="reviews-count" data-key="reviewsCount">11 RESEÑAS</span>
+    </div>
+
+    <div class="review-card">
+      <span class="reviewer-name">HELENA</span>
+      <span class="review-stars">★★★★★</span>
+      <p class="review-text" data-key="reviewText">"The most relaxing and amazing experience. My skin is glowing and I
+        feel completely renewed. Highly recommended!"</p>
+      <span class="review-date" data-key="reviewDate">9 FEB 2026</span>
+    </div>
+
+    <a href="#" class="all-reviews-btn" data-key="seeAllReviews">VER TODAS LAS RESEÑAS</a>
+  </section>
+
   <!-- Site Footer Credits -->
   <footer class="site-footer">
     Hecho por <a href="https://github.com/tleva" target="_blank">t-leva</a> con Antigravity & GitHub
@@ -847,6 +961,11 @@
         tagline: "BEAUTY IS FOR YOU",
         bookBtn: "Book Appointment",
         servicesTitle: "Our Services",
+        reviewsTitle: "REVIEWS",
+        reviewsCount: "11 REVIEWS",
+        reviewText: "\"The most relaxing and amazing experience. My skin is glowing and I feel completely renewed. Highly recommended!\"",
+        reviewDate: "FEB 9, 2026",
+        seeAllReviews: "SEE ALL REVIEWS",
         service1_title: "Deep Facial Cleansing",
         service1_desc: "Total renewal for your skin.",
         service2_title: "Premium Gel Manicure",
@@ -883,7 +1002,12 @@
         nav_contact: "CONTACTO",
         nav_login: "INICIAR SESIÓN",
         welcome_text: "Experimente la cumbre de la excelencia estética. Nuestra clínica combina la precisión médica con una atmósfera de spa de lujo para brindar resultados transformadores para su piel y alma.",
-        reserve_btn: "RESERVA AHORA"
+        reserve_btn: "RESERVA AHORA",
+        reviewsTitle: "RESEÑAS",
+        reviewsCount: "11 RESEÑAS",
+        reviewText: "\"La experiencia más relajante y sorprendente. Mi piel brilla y me siento completamente renovada. ¡Muy recomendable!\"",
+        reviewDate: "9 FEB 2026",
+        seeAllReviews: "VER TODAS LAS RESEÑAS"
       }
     };
 
