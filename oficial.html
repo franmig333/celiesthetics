@@ -339,7 +339,11 @@
 
     /* --- Presentation Section --- */
     .presentation-section {
-      padding: 120px 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 0;
       background: #080808;
       position: relative;
       z-index: 10;
@@ -357,11 +361,18 @@
 
     .presentation-image {
       width: 100%;
-      height: 600px;
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: 4/5;
       object-fit: cover;
       border-radius: 4px;
       border: 1px solid rgba(197, 160, 89, 0.2);
       box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+      transition: transform 0.5s ease;
+    }
+
+    .presentation-image:hover {
+      transform: scale(1.02);
     }
 
     .presentation-content {
@@ -370,19 +381,12 @@
       gap: 30px;
     }
 
-    .presentation-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 3.5rem;
-      color: var(--gold-color);
-      margin: 0;
-      line-height: 1.1;
-    }
-
     .presentation-text {
       font-size: 1.1rem;
       color: var(--text-secondary);
       line-height: 1.8;
       max-width: 500px;
+      margin: 0;
     }
 
     .reserve-btn {
@@ -685,7 +689,9 @@
       }
 
       .presentation-image {
-        height: 400px;
+        height: auto;
+        aspect-ratio: 16/9;
+        margin-bottom: 20px;
       }
     }
 
@@ -712,7 +718,7 @@
   <!-- Navigation Bar -->
   <nav class="navbar" id="navbar">
     <div class="nav-logo">
-      <img src="logo.png" alt="Celi-Esthetics">
+      <img src="images/logo.png" alt="Celi-Esthetics">
     </div>
 
     <div class="nav-links">
@@ -739,7 +745,7 @@
   <!-- Header / Hero -->
   <header class="hero">
     <div class="hero-logo">
-      <img src="logo.png" alt="Celi-Esthetics Logo">
+      <img src="images/logo.png" alt="Celi-Esthetics Logo">
     </div>
     <p class="hero-tagline" data-key="tagline">BEAUTY IS FOR YOU</p>
     <a href="https://wa.me/15166697658" class="book-btn" data-key="bookBtn" target="_blank">Book Appointment</a>
@@ -749,12 +755,9 @@
   <section id="about" class="presentation-section">
     <div class="presentation-grid">
       <div class="presentation-col">
-        <img
-          src="https://images.unsplash.com/photo-1540555700478-4be289fbecee?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-          alt="Celi Esthetics Clinical Spa" class="presentation-image">
+        <img src="images/presentacion.jpg" alt="Celi Esthetics Clinical Spa" class="presentation-image">
       </div>
       <div class="presentation-content">
-        <h2 class="presentation-title">CELI ESTHETICS</h2>
         <p class="presentation-text" data-key="welcome_text">
           Experience the pinnacle of esthetic excellence. Our clinic combines medical precision with a luxury spa
           atmosphere to provide transformative results for your skin and soul.
