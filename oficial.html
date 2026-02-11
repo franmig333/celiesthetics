@@ -850,13 +850,92 @@
       border: 1px solid rgba(197, 160, 89, 0.2);
       border-radius: 4px;
       overflow: hidden;
-      filter: grayscale(100%) invert(90%) hue-rotate(180deg) opacity(0.8);
+    }
+
+    .btn-gold {
+      background: transparent;
+      border: 1px solid var(--gold-color);
+      color: var(--gold-color);
+      padding: 12px 30px;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+    }
+
+    .btn-gold:hover {
+      background: var(--gold-color);
+      color: #050505;
     }
 
     .map-container iframe {
       width: 100%;
       height: 100%;
       border: none;
+    }
+
+    /* Tooltip styles */
+    .distance-wrapper {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .info-icon {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 1px solid #D4AF37;
+      border-radius: 50%;
+      color: #D4AF37;
+      font-size: 12px;
+      line-height: 18px;
+      text-align: center;
+      margin-left: 10px;
+      cursor: help;
+      position: relative;
+    }
+
+    .tooltip-text {
+      visibility: hidden;
+      width: 220px;
+      background-color: #111;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 10px;
+      position: absolute;
+      z-index: 10;
+      bottom: 140%;
+      left: 50%;
+      margin-left: -110px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      border: 1px solid #D4AF37;
+      font-size: 0.8rem;
+      font-style: normal;
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.8);
+      pointer-events: none;
+    }
+
+    .tooltip-text::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #D4AF37 transparent transparent transparent;
+    }
+
+    .info-icon:hover .tooltip-text,
+    .info-icon:active .tooltip-text {
+      visibility: visible;
+      opacity: 1;
     }
 
     .final-footer {
@@ -1241,12 +1320,94 @@
         </form>
       </div>
 
-      <div class="map-container">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3017.3068997576566!2d-73.20371302341998!3d40.85414842887756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e836b6f7936a0d%3A0xc3f58a9e1e3b6e8a!2s130%20E%20Main%20St%2C%20Smithtown%2C%20NY%2011787!5e0!3m2!1sen!2sus!4v1707611000000!5m2!1sen!2sus"
-          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="map-column">
+        <div class="map-container"
+          style="width: 100%; height: 300px; border: 1px solid #D4AF37; margin-bottom: 15px; overflow: hidden;">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3017.365318299468!2d-73.19934792348575!3d40.86378407137119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e830bd3e32e8d9%3A0xe966f575f9addf5!2s130%20E%20Main%20St%2C%20Smithtown%2C%20NY%2011787!5e0!3m2!1sen!2sus!4v1707540000000!5m2!1sen!2sus"
+            width="100%" height="100%" style="border:0; filter: invert(90%) hue-rotate(180deg) contrast(1.2);"
+            allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+        <div class="distance-wrapper" style="text-align: center; margin-top: 10px;">
+          <div id="live-distance" onclick="openMaps()"
+            style="cursor: pointer; padding: 10px 20px; border: 1px solid #D4AF37; border-radius: 50px; display: inline-block; color: #D4AF37; transition: all 0.3s; background: rgba(0,0,0,0.8);">
+            <span class="loading-text">📍 Calculando ruta... / Calculating...</span>
+          </div>
+
+          <div class="info-icon">
+            i
+            <span class="tooltip-text">
+              ⚠️ Habilita tu ubicación en el navegador para ver los minutos exactos. <br>
+              <em style="color:#888;">Enable location to see exact time.</em>
+            </span>
+          </div>
+        </div>
+
+        <script>
+          // Coordenadas Celi Esthetics (Smithtown)
+          const destLat = 40.857;
+          const destLon = -73.199;
+          let userLat, userLon;
+
+          function calculateAuto() {
+            if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(showPosition, showError);
+            }
+          }
+
+          function showPosition(position) {
+            userLat = position.coords.latitude;
+            userLon = position.coords.longitude;
+
+            // Haversine Math
+            const R = 6371;
+            const dLat = (destLat - userLat) * Math.PI / 180;
+            const dLon = (destLon - userLon) * Math.PI / 180;
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(userLat * Math.PI / 180) * Math.cos(destLat * Math.PI / 180) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            const dist = R * c;
+            const time = Math.round((dist / 40) * 60); // 40km/h avg speed
+
+            updateText(time);
+          }
+
+          function showError() {
+            const el = document.getElementById('live-distance');
+            el.innerHTML = "📍 Ver ruta en Google Maps / View route on Maps";
+          }
+
+          function updateText(time) {
+            const el = document.getElementById('live-distance');
+            // Detectar idioma actual (buscando clase activa)
+            const activeLang = document.querySelector('.lang-option.active')?.getAttribute('data-lang') || 'en';
+            const isEnglish = activeLang === 'en';
+
+            if (isEnglish) {
+              el.innerHTML = `🚗 You are approx <b>${time} min</b> away.`;
+            } else {
+              el.innerHTML = `🚗 Estás a aprox <b>${time} min</b> de llegar.`;
+            }
+          }
+
+          function openMaps() {
+            // Si tenemos ubicación, abrimos ruta exacta, si no, mapa general
+            if (userLat) {
+              window.open(`https://www.google.com/maps/dir/?api=1&origin=${userLat},${userLon}&destination=${destLat},${destLon}`, '_blank');
+            } else {
+              window.open(`https://www.google.com/maps/search/?api=1&query=${destLat},${destLon}`, '_blank');
+            }
+          }
+
+          // Ejecutar al cargar
+          window.addEventListener('load', calculateAuto);
+
+          // Escuchar cambios de idioma
+          document.querySelectorAll('.lang-option').forEach(b => {
+            b.addEventListener('click', () => setTimeout(() => calculateAuto(), 500));
+          });
+        </script>
       </div>
-    </div>
   </section>
 
   <footer class="final-footer">
@@ -1304,7 +1465,10 @@
         placeholderMessage: "Message",
         sendBtn: "SEND",
         copyright: "© 2026 Celi Esthetics. All rights reserved.",
-        footer_created: "CREATED BY"
+        footer_created: "CREATED BY",
+        etaLink: "📍 View estimated travel time from my location",
+        etaCalculating: "Calculating...",
+        etaError: "We couldn't detect your location."
       },
       es: {
         tagline: "LA BELLEZA ES PARA TI",
@@ -1339,7 +1503,10 @@
         placeholderMessage: "Mensaje",
         sendBtn: "ENVIAR",
         copyright: "© 2026 Celi Esthetics. Todos los derechos reservados.",
-        footer_created: "CREADO POR"
+        footer_created: "CREADO POR",
+        etaLink: "📍 Ver tiempo estimado de llegada desde mi ubicación",
+        etaCalculating: "Calculando...",
+        etaError: "No pudimos detectar tu ubicación."
       }
     };
 
@@ -1453,6 +1620,8 @@
       });
     });
   </script>
+
+
 </body>
 
 </html>
