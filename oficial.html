@@ -1308,18 +1308,21 @@
 
         <form class="contact-form">
           <div class="form-group">
-            <input type="text" data-placeholder-key="placeholderName" placeholder="Nombre">
+            <input type="text" id="contact-name" data-placeholder-key="placeholderName" placeholder="Nombre Completo">
           </div>
           <div class="form-group">
-            <input type="tel" data-placeholder-key="placeholderPhone" placeholder="Teléfono / Phone" required>
+            <input type="tel" id="contact-phone" data-placeholder-key="placeholderPhone" placeholder="Teléfono"
+              required>
           </div>
           <div class="form-group">
-            <input type="email" data-placeholder-key="placeholderEmail" placeholder="Correo Electrónico">
+            <input type="email" id="contact-email" data-placeholder-key="placeholderEmail"
+              placeholder="Correo Electrónico">
           </div>
           <div class="form-group">
-            <textarea rows="4" data-placeholder-key="placeholderMessage" placeholder="Mensaje"></textarea>
+            <textarea id="contact-message" rows="4" data-placeholder-key="placeholderMessage"
+              placeholder="Escribe tu mensaje aquí..."></textarea>
           </div>
-          <button type="submit" class="send-btn" data-key="sendBtn">ENVIAR</button>
+          <button type="submit" id="contact-submit" class="send-btn" data-key="sendBtn">ENVIAR MENSAJE</button>
         </form>
       </div>
       <div class="map-column">
@@ -1463,11 +1466,11 @@
         welcome_text: "Experience the pinnacle of esthetic excellence. Our clinic combines medical precision with a luxury spa atmosphere to provide transformative results for your skin and soul.",
         reserve_btn: "RESERVE NOW",
         contactTitle: "CONTACT",
-        placeholderName: "Name",
-        placeholderPhone: "Phone",
-        placeholderEmail: "Email",
-        placeholderMessage: "Message",
-        sendBtn: "SEND",
+        placeholderName: "Full Name",
+        placeholderPhone: "Phone Number",
+        placeholderEmail: "Email Address",
+        placeholderMessage: "Type your message here...",
+        sendBtn: "SEND MESSAGE",
         copyright: "© 2026 Celi Esthetics. All rights reserved.",
         footer_created: "CREATED BY",
         etaLink: "📍 View estimated travel time from my location",
@@ -1502,11 +1505,11 @@
         photosTitle: "FOTOS",
         seePortfolio: "VER PORTAFOLIO",
         contactTitle: "CONTACTO",
-        placeholderName: "Nombre",
+        placeholderName: "Nombre Completo",
         placeholderPhone: "Teléfono",
         placeholderEmail: "Correo Electrónico",
-        placeholderMessage: "Mensaje",
-        sendBtn: "ENVIAR",
+        placeholderMessage: "Escribe tu mensaje aquí...",
+        sendBtn: "ENVIAR MENSAJE",
         copyright: "© 2026 Celi Esthetics. Todos los derechos reservados.",
         footer_created: "CREADO POR",
         etaLink: "📍 Ver tiempo estimado de llegada desde mi ubicación",
@@ -1544,7 +1547,7 @@
 
       // 2. Language Switcher
       const langOptions = document.querySelectorAll('.lang-option');
-      const translatableElements = document.querySelectorAll('[data-key]');
+      const translatableElements = document.querySelectorAll('[data-key], [data-placeholder-key]');
 
       langOptions.forEach(option => {
         option.addEventListener('click', () => {
