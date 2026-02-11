@@ -1549,6 +1549,26 @@
       const langOptions = document.querySelectorAll('.lang-option');
       const translatableElements = document.querySelectorAll('[data-key], [data-placeholder-key]');
 
+      function updateLanguage(lang) {
+        translatableElements.forEach(el => {
+          const key = el.getAttribute('data-key');
+          const placeholderKey = el.getAttribute('data-placeholder-key');
+
+          if (key && translations[lang][key]) {
+            // Fade effect for text change
+            el.style.opacity = 0;
+            setTimeout(() => {
+              el.textContent = translations[lang][key];
+              el.style.opacity = 1;
+            }, 200);
+          }
+
+          if (placeholderKey && translations[lang][placeholderKey]) {
+            el.placeholder = translations[lang][placeholderKey];
+          }
+        });
+      }
+
       langOptions.forEach(option => {
         option.addEventListener('click', () => {
           // Update active state
@@ -1557,25 +1577,16 @@
 
           // Update Text
           const lang = option.getAttribute('data-lang');
-          translatableElements.forEach(el => {
-            const key = el.getAttribute('data-key');
-            const placeholderKey = el.getAttribute('data-placeholder-key');
-
-            if (key && translations[lang][key]) {
-              // Fade effect for text change
-              el.style.opacity = 0;
-              setTimeout(() => {
-                el.textContent = translations[lang][key];
-                el.style.opacity = 1;
-              }, 200);
-            }
-
-            if (placeholderKey && translations[lang][placeholderKey]) {
-              el.placeholder = translations[lang][placeholderKey];
-            }
-          });
+          updateLanguage(lang);
         });
       });
+
+      // Initialize language based on active button
+      const activeOption = document.querySelector('.lang-option.active');
+      if (activeOption) {
+        const initialLang = activeOption.getAttribute('data-lang');
+        updateLanguage(initialLang);
+      }
 
       // 3. Particles Logic (Synced with index.html)
       const container = document.getElementById('particles');
