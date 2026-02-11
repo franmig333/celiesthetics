@@ -725,6 +725,164 @@
       }
     }
 
+    /* --- Contact Section --- */
+    .contact-section {
+      padding: 80px 0 120px 0;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 100px;
+      align-items: flex-start;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .contact-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--gold-color);
+      margin-bottom: 30px;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+
+    .contact-detail svg {
+      color: var(--gold-color);
+      width: 20px;
+      flex-shrink: 0;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 20px;
+      margin: 40px 0;
+    }
+
+    .social-icon {
+      width: 45px;
+      height: 45px;
+      border: 1px solid rgba(197, 160, 89, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-color);
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .social-icon:hover {
+      background: var(--gold-color);
+      color: #050505;
+      border-color: var(--gold-color);
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
+    }
+
+    .social-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .form-group {
+      position: relative;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+      padding: 12px 0;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-bottom-color: var(--gold-color);
+    }
+
+    .send-btn {
+      align-self: flex-start;
+      background: transparent;
+      border: 1px solid var(--gold-color);
+      color: var(--gold-color);
+      padding: 12px 40px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .send-btn:hover {
+      background: var(--gold-color);
+      color: #050505;
+    }
+
+    .map-container {
+      width: 100%;
+      height: 500px;
+      border: 1px solid rgba(197, 160, 89, 0.2);
+      border-radius: 4px;
+      overflow: hidden;
+      filter: grayscale(100%) invert(90%) hue-rotate(180deg) opacity(0.8);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .final-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 40px 0;
+      text-align: center;
+      background: #020202;
+    }
+
+    .copyright {
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 991px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+
+      .map-container {
+        height: 400px;
+      }
+    }
+
     .site-footer {
       text-align: center;
       padding: 20px;
@@ -984,7 +1142,80 @@
     <a href="#" class="all-reviews-btn" data-key="seePortfolio" style="margin-top: 50px;">VER PORTAFOLIO</a>
   </section>
 
-  <!-- Site Footer Credits -->
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3 data-key="contactTitle">CONTACTO</h3>
+
+        <div class="contact-detail">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          <span>130 E. Main Street, Smithtown, New York 11787, Suite Number: 204</span>
+        </div>
+
+        <div class="social-links">
+          <!-- Instagram 1 -->
+          <a href="https://www.instagram.com/celiesthetics_by_liz?utm_source=qr&igsh=dzljd2JzY3NldTFz" target="_blank"
+            class="social-icon" aria-label="Instagram 1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+            </svg>
+          </a>
+          <!-- Instagram 2 -->
+          <a href="https://www.instagram.com/cecibelparra_?igsh=MW8xaDdqMDB0NDd2cQ%3D%3D&utm_source=qr" target="_blank"
+            class="social-icon" aria-label="Instagram 2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+            </svg>
+          </a>
+          <!-- WhatsApp -->
+          <a href="https://wa.me/15166697658" target="_blank" class="social-icon" aria-label="WhatsApp">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.28-2.28a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+          </a>
+        </div>
+
+        <form class="contact-form">
+          <div class="form-group">
+            <input type="text" data-placeholder-key="placeholderName" placeholder="Nombre">
+          </div>
+          <div class="form-group">
+            <input type="email" data-placeholder-key="placeholderEmail" placeholder="Correo Electrónico">
+          </div>
+          <div class="form-group">
+            <textarea rows="4" data-placeholder-key="placeholderMessage" placeholder="Mensaje"></textarea>
+          </div>
+          <button type="submit" class="send-btn" data-key="sendBtn">ENVIAR</button>
+        </form>
+      </div>
+
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3017.3068997576566!2d-73.20371302341998!3d40.85414842887756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e836b6f7936a0d%3A0xc3f58a9e1e3b6e8a!2s130%20E%20Main%20St%2C%20Smithtown%2C%20NY%2011787!5e0!3m2!1sen!2sus!4v1707611000000!5m2!1sen!2sus"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer class="final-footer">
+    <div class="container">
+      <p class="copyright" data-key="copyright">© 2026 Celi Esthetics. All rights reserved.</p>
+    </div>
+  </footer>
+
   <footer class="site-footer">
     Hecho por <a href="https://github.com/tleva" target="_blank">t-leva</a> con Antigravity & GitHub
   </footer>
@@ -1026,10 +1257,15 @@
         nav_services: "Services",
         nav_reviews: "Reviews",
         nav_photos: "Photos",
-        nav_contact: "Contact",
         nav_login: "Login",
         welcome_text: "Experience the pinnacle of esthetic excellence. Our clinic combines medical precision with a luxury spa atmosphere to provide transformative results for your skin and soul.",
-        reserve_btn: "RESERVE NOW"
+        reserve_btn: "RESERVE NOW",
+        contactTitle: "CONTACT",
+        placeholderName: "Name",
+        placeholderEmail: "Email",
+        placeholderMessage: "Message",
+        sendBtn: "SEND",
+        copyright: "© 2026 Celi Esthetics. All rights reserved."
       },
       es: {
         tagline: "LA BELLEZA ES PARA TI",
@@ -1057,7 +1293,13 @@
         reviewDate: "9 FEB 2026",
         seeAllReviews: "VER TODAS LAS RESEÑAS",
         photosTitle: "FOTOS",
-        seePortfolio: "VER PORTAFOLIO"
+        seePortfolio: "VER PORTAFOLIO",
+        contactTitle: "CONTACTO",
+        placeholderName: "Nombre",
+        placeholderEmail: "Correo Electrónico",
+        placeholderMessage: "Mensaje",
+        sendBtn: "ENVIAR",
+        copyright: "© 2026 Celi Esthetics. Todos los derechos reservados."
       }
     };
 
@@ -1102,13 +1344,19 @@
           const lang = option.getAttribute('data-lang');
           translatableElements.forEach(el => {
             const key = el.getAttribute('data-key');
-            if (translations[lang][key]) {
+            const placeholderKey = el.getAttribute('data-placeholder-key');
+
+            if (key && translations[lang][key]) {
               // Fade effect for text change
               el.style.opacity = 0;
               setTimeout(() => {
                 el.textContent = translations[lang][key];
                 el.style.opacity = 1;
               }, 200);
+            }
+
+            if (placeholderKey && translations[lang][placeholderKey]) {
+              el.placeholder = translations[lang][placeholderKey];
             }
           });
         });
