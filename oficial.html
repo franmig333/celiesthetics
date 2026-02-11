@@ -691,6 +691,40 @@
       color: #fff;
     }
 
+    /* --- Portfolio Section --- */
+    .portfolio-section {
+      padding: 80px 0 120px 0;
+      text-align: center;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 4px;
+      transition: all 0.5s ease;
+      border: 1px solid rgba(197, 160, 89, 0.2);
+    }
+
+    .portfolio-item img:hover {
+      transform: scale(1.05);
+      border-color: var(--gold-color);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    }
+
+    @media (max-width: 768px) {
+      .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     .site-footer {
       text-align: center;
       padding: 20px;
@@ -938,6 +972,18 @@
     <a href="#" class="all-reviews-btn" data-key="seeAllReviews">VER TODAS LAS RESEÑAS</a>
   </section>
 
+  <!-- Photos Section -->
+  <section id="photos" class="container portfolio-section">
+    <h3 class="section-title" data-key="photosTitle">FOTOS</h3>
+    <div class="portfolio-grid">
+      <div class="portfolio-item"><img src="images/galeria1.jpg" alt="Spa 1"></div>
+      <div class="portfolio-item"><img src="images/galeria2.jpg" alt="Spa 2"></div>
+      <div class="portfolio-item"><img src="images/galeria3.jpg" alt="Spa 3"></div>
+      <div class="portfolio-item"><img src="images/galeria4.jpg" alt="Spa 4"></div>
+    </div>
+    <a href="#" class="all-reviews-btn" data-key="seePortfolio" style="margin-top: 50px;">VER PORTAFOLIO</a>
+  </section>
+
   <!-- Site Footer Credits -->
   <footer class="site-footer">
     Hecho por <a href="https://github.com/tleva" target="_blank">t-leva</a> con Antigravity & GitHub
@@ -966,6 +1012,8 @@
         reviewText: "\"The most relaxing and amazing experience. My skin is glowing and I feel completely renewed. Highly recommended!\"",
         reviewDate: "FEB 9, 2026",
         seeAllReviews: "SEE ALL REVIEWS",
+        photosTitle: "PHOTOS",
+        seePortfolio: "SEE PORTFOLIO",
         service1_title: "Deep Facial Cleansing",
         service1_desc: "Total renewal for your skin.",
         service2_title: "Premium Gel Manicure",
@@ -1007,7 +1055,9 @@
         reviewsCount: "11 RESEÑAS",
         reviewText: "\"La experiencia más relajante y sorprendente. Mi piel brilla y me siento completamente renovada. ¡Muy recomendable!\"",
         reviewDate: "9 FEB 2026",
-        seeAllReviews: "VER TODAS LAS RESEÑAS"
+        seeAllReviews: "VER TODAS LAS RESEÑAS",
+        photosTitle: "FOTOS",
+        seePortfolio: "VER PORTAFOLIO"
       }
     };
 
