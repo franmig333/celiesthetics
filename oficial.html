@@ -860,26 +860,65 @@
     }
 
     .final-footer {
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 40px 0;
+      padding: 60px 0 100px 0;
       text-align: center;
       background: #020202;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
     }
 
-    .copyright {
-      color: rgba(255, 255, 255, 0.3);
-      font-size: 0.8rem;
+    .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer-label {
+      color: #666;
+    }
+
+    .footer-brand-btn {
+      text-decoration: none;
+      color: var(--gold-color);
+      border: 1px solid rgba(197, 160, 89, 0.5);
+      padding: 6px 20px;
+      border-radius: 50px;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      background: rgba(197, 160, 89, 0.05);
+    }
+
+    .footer-brand-btn:hover {
+      background: var(--gold-color);
+      color: #050505;
+      box-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
+      transform: scale(1.05);
+    }
+
+    .footer-year {
+      color: #666;
+    }
+
+    .copyright-strip {
+      color: rgba(255, 255, 255, 0.2);
+      font-size: 0.7rem;
       letter-spacing: 1px;
+      margin-top: 20px;
     }
 
     @media (max-width: 991px) {
-      .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 60px;
-      }
 
-      .map-container {
-        height: 400px;
+      /* ... existing queries ... */
+      .footer-content {
+        flex-direction: column;
+        gap: 10px;
       }
     }
 
@@ -1211,13 +1250,12 @@
   </section>
 
   <footer class="final-footer">
-    <div class="container">
-      <p class="copyright" data-key="copyright">© 2026 Celi Esthetics. All rights reserved.</p>
+    <div class="footer-content">
+      <span class="footer-label" data-key="footer_created">CREATED BY</span>
+      <a href="https://portafolio-fm.netlify.app/" target="_blank" class="footer-brand-btn">T-LEVA</a>
+      <span class="footer-year">2026</span>
     </div>
-  </footer>
-
-  <footer class="site-footer">
-    Hecho por <a href="https://github.com/tleva" target="_blank">t-leva</a> con Antigravity & GitHub
+    <p class="copyright-strip" data-key="copyright">© 2026 Celi Esthetics. All rights reserved.</p>
   </footer>
 
   <!-- Sticky Calculator Footer -->
@@ -1265,7 +1303,8 @@
         placeholderEmail: "Email",
         placeholderMessage: "Message",
         sendBtn: "SEND",
-        copyright: "© 2026 Celi Esthetics. All rights reserved."
+        copyright: "© 2026 Celi Esthetics. All rights reserved.",
+        footer_created: "CREATED BY"
       },
       es: {
         tagline: "LA BELLEZA ES PARA TI",
@@ -1299,7 +1338,8 @@
         placeholderEmail: "Correo Electrónico",
         placeholderMessage: "Mensaje",
         sendBtn: "ENVIAR",
-        copyright: "© 2026 Celi Esthetics. Todos los derechos reservados."
+        copyright: "© 2026 Celi Esthetics. Todos los derechos reservados.",
+        footer_created: "CREADO POR"
       }
     };
 
