@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Celi-Esthetics | Coming Soon</title>
+<style>
+/* CÓDIGO OPTIMIZADO PARA VELOCIDAD */
+body{margin:0;padding:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;height:100vh;height:100dvh;overflow:hidden;background-color:#050505;display:flex;justify-content:center;align-items:center;flex-direction:column;text-align:center;cursor:default;position:relative}
+.lang-switch{position:absolute;top:25px;right:25px;z-index:100;color:#666;font-size:0.85rem;letter-spacing:2px;font-weight:600;user-select:none;background:rgba(0,0,0,0.5);padding:10px 15px;border-radius:20px;border:1px solid rgba(212,175,55,0.2)}
+.lang-option{cursor:pointer;transition:all 0.3s ease;padding:0 5px}
+.lang-option:hover{color:#D4AF37}
+.lang-option.active{color:#D4AF37;text-decoration:underline;text-underline-offset:4px}
+.divider{margin:0 5px;color:#444}
+#cursor-aura{position:absolute;border-radius:50%;pointer-events:none;z-index:-1;mix-blend-mode:screen;background:radial-gradient(circle,rgba(212,175,55,0.15) 0%,rgba(0,0,0,0) 70%);width:600px;height:600px;top:50%;left:50%;transform:translate(-50%,-50%)}
+.particle{position:absolute;border-radius:50%;background:#D4AF37;box-shadow:0 0 5px rgba(212,175,55,0.8);animation:floatUp linear infinite,twinkle 4s ease-in-out infinite;z-index:-2}
+@keyframes floatUp{0%{transform:translateY(110vh) scale(0.8);opacity:0}10%{opacity:0.9}100%{transform:translateY(-10vh) scale(1.2);opacity:0}}
+@keyframes twinkle{0%,100%{opacity:0.5}50%{opacity:1;box-shadow:0 0 10px rgba(212,175,55,1)}}
+.content-wrapper{width:85%;max-width:800px;z-index:10;display:flex;flex-direction:column;align-items:center}
+
+/* --- NUEVA ANIMACIÓN DEL LOGO (Levitación) --- */
+.logo-img{
+  width:100%;
+  max-width:550px;
+  height:auto;
+  margin-bottom:30px;
+  opacity:0;
+  /* Combina la entrada (FadeIn) y luego la levitación continua (floatLogo) */
+  animation: logoFadeIn 1.5s ease-out 0.5s forwards, floatLogo 6s ease-in-out 2s infinite;
+}
+/* Entrada suave */
+@keyframes logoFadeIn{to{opacity:1}}
+/* Levitación continua */
+@keyframes floatLogo {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); } /* Se mueve 15px hacia arriba */
+}
+
+p{color:#999;letter-spacing:6px;margin-bottom:80px;font-size:0.9rem;text-transform:uppercase;opacity:0;animation:contentFadeIn 1.5s ease-out 1s forwards}
+@keyframes contentFadeIn{to{opacity:1}}
+.whatsapp-btn{text-decoration:none;background:rgba(212,175,55,0.03);border:1px solid rgba(212,175,55,0.4);color:#D4AF37;padding:22px 55px;font-size:0.9rem;font-weight:500;letter-spacing:4px;text-transform:uppercase;display:inline-block;transition:all 0.5s cubic-bezier(0.25,1,0.5,1);backdrop-filter:blur(4px);opacity:0;animation:contentFadeIn 1.5s ease-out 1.2s forwards}
+.whatsapp-btn:hover,.whatsapp-btn:active{transform:translateY(-5px);background:rgba(212,175,55,0.15);border-color:#D4AF37;box-shadow:0 20px 40px -10px rgba(0,0,0,0.5);color:#fff;letter-spacing:6px}
+.footer{position:absolute;bottom:20px;width:100%;text-align:center;font-size:0.65rem;color:#555;z-index:20;letter-spacing:1.5px;text-transform:uppercase;display:flex;justify-content:center;align-items:center;gap:8px;opacity:0;animation:contentFadeIn 1.5s ease-out 1.5s forwards}
+.footer-btn{text-decoration:none;color:#D4AF37;border:1px solid rgba(212,175,55,0.5);padding:4px 12px;border-radius:15px;font-weight:700;font-size:0.6rem;transition:all 0.3s ease;background:rgba(0,0,0,0.3);animation:goldPulse 3s infinite}
+.footer-btn:hover{background:#D4AF37;color:#000;box-shadow:0 0 15px rgba(212,175,55,0.6);transform:scale(1.05);border-color:#D4AF37}
+@keyframes goldPulse{0%{box-shadow:0 0 0 0 rgba(212,175,55,0.4)}70%{box-shadow:0 0 0 4px rgba(212,175,55,0)}100%{box-shadow:0 0 0 0 rgba(212,175,55,0)}}
+@media (max-width:768px){#cursor-aura{width:120vw;height:120vw;opacity:0.5;background:radial-gradient(circle,rgba(212,175,55,0.25) 0%,rgba(0,0,0,0) 60%);animation:mobileFloat 10s infinite ease-in-out alternate}
+@keyframes mobileFloat{0%{transform:translate(-50%,-50%) translate(-20px,-20px)}100%{transform:translate(-50%,-50%) translate(-10px,10px)}}
+.logo-img{max-width:320px;margin-bottom:20px}p{font-size:0.75rem;letter-spacing:3px;margin-bottom:60px}.whatsapp-btn{width:70%;padding:18px 0;font-size:0.8rem}.lang-switch{top:20px;right:20px}}
+</style>
+</head>
+<body>
+<div class="lang-switch"><span class="lang-option active" id="btn-en" onclick="setLang('en')">EN</span><span class="divider">|</span><span class="lang-option" id="btn-es" onclick="setLang('es')">ES</span></div>
+<div id="cursor-aura"></div><div id="particles-container"></div>
+<div class="content-wrapper">
+  <img src="logo.png" alt="Celi-Esthetics Logo" class="logo-img">
+  <p id="subtitle">Coming Soon</p>
+  <a id="cta-btn" href="https://wa.me/15166697658" class="whatsapp-btn" target="_blank">Book Appointment</a>
+</div>
+<div class="footer"><span id="footer-lbl">Created by</span><a href="https://portafolio-fm.netlify.app/" target="_blank" class="footer-btn">t-leva</a><span>2026</span></div>
+<script>
+const translations={en:{subtitle:"Coming Soon",btn:"Book Appointment",footer:"Created by"},es:{subtitle:"Próximamente",btn:"Agendar Cita",footer:"Creado por"}};
+function setLang(l){document.getElementById('subtitle').innerText=translations[l].subtitle;document.getElementById('cta-btn').innerText=translations[l].btn;document.getElementById('footer-lbl').innerText=translations[l].footer;document.querySelectorAll('.lang-option').forEach(e=>e.classList.remove('active'));document.getElementById('btn-'+l).classList.add('active')}
+const aura=document.getElementById('cursor-aura');const isMobile=window.matchMedia("(max-width: 768px)").matches;if(!isMobile){document.addEventListener('mousemove',(e)=>{aura.animate({left:`${e.clientX}px`,top:`${e.clientY}px`,transform:'translate(-50%, -50%)'},{duration:800,fill:"forwards"})})}
+const container=document.getElementById('particles-container');const particleCount=isMobile?35:60;for(let i=0;i<particleCount;i++){const p=document.createElement('div');p.classList.add('particle');const size=Math.random()*3+2+'px';p.style.width=size;p.style.height=size;p.style.left=Math.random()*100+'vw';const duration=Math.random()*20+15+'s';p.style.animationDuration=duration+', 4s';p.style.animationDelay=(Math.random()*-20)+'s';container.appendChild(p)}
+</script>
+</body>
+</html>

@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Celi-Esthetics | Belleza y Perfección</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* --- Reset & Base Styles --- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      cursor: default;
+      /* Custom cursor logic handled largely by pointer-events */
+    }
+
+    :root {
+      --bg-color: #050505;
+      /* Deep Black */
+      --gold-color: #C5A059;
+      /* Metallic Gold */
+      --gold-hover: #E6C87F;
+      --text-color: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.7);
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      /* Light weight for elegance */
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* --- Typography --- */
+    h1,
+    h2,
+    h3,
+    .price,
+    .total-container {
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 1px;
+    }
+
+    a,
+    button,
+    .lang-switch {
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 1px;
+    }
+
+    /* --- Mouse Glow Aura --- */
+    #cursor-aura {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(197, 160, 89, 0.08) 0%, rgba(5, 5, 5, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease-out;
+      /* Smooth follow */
+      mix-blend-mode: screen;
+    }
+
+    /* --- Particles --- */
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      background: var(--gold-color);
+      border-radius: 50%;
+      opacity: 0;
+      animation: float 10s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) scale(0);
+        opacity: 0;
+      }
+
+      50% {
+        opacity: 0.6;
+      }
+
+      /* Subtle sparkle */
+      100% {
+        transform: translateY(-100px) scale(0);
+        opacity: 0;
+      }
+    }
+
+    /* --- Language Switcher --- */
+    .lang-switch {
+      position: fixed;
+      top: 25px;
+      right: 25px;
+      z-index: 1000;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: rgba(5, 5, 5, 0.6);
+      backdrop-filter: blur(10px);
+      padding: 8px 16px;
+      border-radius: 30px;
+      border: 1px solid rgba(197, 160, 89, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .lang-switch:hover {
+      border-color: var(--gold-color);
+    }
+
+    .lang-option {
+      cursor: pointer;
+      transition: color 0.3s ease;
+      padding: 0 4px;
+    }
+
+    .lang-option:hover {
+      color: var(--gold-hover);
+    }
+
+    .lang-option.active {
+      color: var(--gold-color);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .divider {
+      margin: 0 4px;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* --- Layout --- */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+      height: 85vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    .hero-logo img {
+      width: 180px;
+      display: block;
+      margin: 0 auto 30px auto;
+      /* No shadow for a cleaner look, or subtle */
+      filter: drop-shadow(0 0 10px rgba(197, 160, 89, 0.2));
+      transition: transform 0.5s ease;
+    }
+
+    .hero-logo img:hover {
+      transform: scale(1.02);
+    }
+
+    .hero-tagline {
+      font-size: 1rem;
+      letter-spacing: 4px;
+      color: var(--gold-color);
+      text-transform: uppercase;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeIn 1.5s ease-out 0.5s forwards;
+    }
+
+    .book-btn {
+      background: transparent;
+      border: 1px solid var(--gold-color);
+      color: var(--gold-color);
+      padding: 16px 45px;
+      font-size: 0.9rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      text-decoration: none;
+      display: inline-block;
+      backdrop-filter: blur(5px);
+      opacity: 0;
+      animation: fadeIn 1.5s ease-out 0.8s forwards;
+    }
+
+    .book-btn:hover {
+      background: rgba(197, 160, 89, 0.15);
+      box-shadow: 0 0 25px rgba(197, 160, 89, 0.4);
+      letter-spacing: 4px;
+      color: #fff;
+      border-color: #fff;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* --- Services --- */
+    .services-list {
+      padding: 40px 0 120px 0;
+      /* Extra padding bottom for footer */
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      color: var(--gold-color);
+      margin-bottom: 60px;
+      font-weight: 400;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 30px;
+      padding: 25px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(197, 160, 89, 0.1);
+      transition: all 0.4s ease;
+      border-radius: 4px;
+    }
+
+    .service-item:hover {
+      transform: translateY(-5px);
+      border-color: rgba(197, 160, 89, 0.5);
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .service-info {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      margin-right: 30px;
+    }
+
+    .service-img {
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      margin-right: 30px;
+      filter: grayscale(40%) contrast(110%);
+      border: 1px solid rgba(197, 160, 89, 0.3);
+      transition: all 0.4s ease;
+    }
+
+    .service-item:hover .service-img {
+      filter: grayscale(0%);
+      border-color: var(--gold-color);
+    }
+
+    .service-text h3 {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+      color: #fff;
+      font-weight: 400;
+    }
+
+    .service-text p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      font-weight: 300;
+    }
+
+    .service-action {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      min-width: 100px;
+      text-align: right;
+    }
+
+    .price {
+      font-size: 1.5rem;
+      color: var(--gold-color);
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    .add-btn {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.4rem;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .add-btn:hover {
+      border-color: var(--gold-color);
+      color: var(--gold-color);
+      transform: rotate(90deg);
+    }
+
+    .add-btn.active {
+      background: var(--gold-color);
+      border-color: var(--gold-color);
+      color: #050505;
+      transform: rotate(0deg);
+    }
+
+    /* --- Footer --- */
+    .sticky-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(5, 5, 5, 0.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(197, 160, 89, 0.2);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .total-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      display: block;
+    }
+
+    .total-amount {
+      font-size: 1.8rem;
+      color: var(--gold-color);
+      font-weight: 400;
+    }
+
+    .whatsapp-btn {
+      background: var(--gold-color);
+      border: 1px solid var(--gold-color);
+      color: #050505;
+      text-decoration: none;
+      padding: 12px 35px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px rgba(197, 160, 89, 0.2);
+    }
+
+    .whatsapp-btn:hover {
+      background: #fff;
+      color: #050505;
+      border-color: #fff;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+    }
+
+    .site-footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.3);
+      letter-spacing: 1px;
+      margin-top: auto;
+      position: relative;
+      z-index: 2;
+      padding-bottom: 90px;
+      /* Adjust for sticky footer */
+    }
+
+    .site-footer a {
+      color: var(--gold-color);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .site-footer a:hover {
+      color: #fff;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 3rem;
+      }
+
+      .hero-logo img {
+        width: 140px;
+      }
+
+      .service-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .service-info {
+        flex-direction: column;
+        margin-right: 0;
+        margin-bottom: 20px;
+      }
+
+      .service-img {
+        margin-right: 0;
+        margin-bottom: 15px;
+        width: 100px;
+        height: 100px;
+      }
+
+      .service-action {
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .price {
+        margin-bottom: 0;
+      }
+
+      #cursor-aura {
+        display: none;
+      }
+
+      /* Disable aura on touch devices for performance */
+      .lang-switch {
+        top: 20px;
+        right: 20px;
+        padding: 6px 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Mouse Glow Aura -->
+  <div id="cursor-aura"></div>
+
+  <!-- Particles -->
+  <div id="particles"></div>
+
+  <!-- Language Switcher -->
+  <div class="lang-switch">
+    <span class="lang-option active" data-lang="en">EN</span>
+    <span class="divider">|</span>
+    <span class="lang-option" data-lang="es">ES</span>
+  </div>
+
+  <!-- Header / Hero -->
+  <header class="hero">
+    <div class="hero-logo">
+      <img src="logo.png" alt="Celi-Esthetics Logo">
+    </div>
+    <p class="hero-tagline" data-key="tagline">Coming Soon</p>
+    <a href="#services" class="book-btn" data-key="bookBtn">Book Appointment</a>
+  </header>
+
+  <!-- Services Section -->
+  <main id="services" class="container services-list">
+    <h3 class="section-title" data-key="servicesTitle">Our Services</h3>
+
+    <!-- Service 1 -->
+    <div class="service-item">
+      <div class="service-info">
+        <img
+          src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
+          alt="Deep Facial" class="service-img">
+        <div class="service-text">
+          <h3 data-key="service1_title">Deep Facial Cleansing</h3>
+          <p data-key="service1_desc">Total renewal for your skin.</p>
+        </div>
+      </div>
+      <div class="service-action">
+        <span class="price">$80</span>
+        <button class="add-btn" data-price="80" aria-label="Add service">+</button>
+      </div>
+    </div>
+
+    <!-- Service 2 -->
+    <div class="service-item">
+      <div class="service-info">
+        <img
+          src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
+          alt="Gel Manicure" class="service-img">
+        <div class="service-text">
+          <h3 data-key="service2_title">Premium Gel Manicure</h3>
+          <p data-key="service2_desc">Exceptional shine and durability.</p>
+        </div>
+      </div>
+      <div class="service-action">
+        <span class="price">$45</span>
+        <button class="add-btn" data-price="45" aria-label="Add service">+</button>
+      </div>
+    </div>
+
+    <!-- Service 3 -->
+    <div class="service-item">
+      <div class="service-info">
+        <img
+          src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
+          alt="Brow Lamination" class="service-img">
+        <div class="service-text">
+          <h3 data-key="service3_title">Brow Lamination</h3>
+          <p data-key="service3_desc">Natural and perfect definition.</p>
+        </div>
+      </div>
+      <div class="service-action">
+        <span class="price">$50</span>
+        <button class="add-btn" data-price="50" aria-label="Add service">+</button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Site Footer Credits -->
+  <footer class="site-footer">
+    Hecho por <a href="https://github.com/tleva" target="_blank">t-leva</a> con Antigravity & GitHub
+  </footer>
+
+  <!-- Sticky Calculator Footer -->
+  <div class="sticky-footer">
+    <div class="total-container">
+      <span class="total-label" data-key="totalLabel">Estimated Total</span>
+      <span class="total-amount" id="total-display">$0</span>
+    </div>
+    <a href="https://wa.me/XXXXXXXXXXX" class="whatsapp-btn" data-key="whatsappBtn">
+      Book Now
+    </a>
+  </div>
+
+  <script>
+    // --- Translations ---
+    const translations = {
+      en: {
+        tagline: "Coming Soon",
+        bookBtn: "Book Appointment",
+        servicesTitle: "Our Services",
+        service1_title: "Deep Facial Cleansing",
+        service1_desc: "Total renewal for your skin.",
+        service2_title: "Premium Gel Manicure",
+        service2_desc: "Exceptional shine and durability.",
+        service3_title: "Brow Lamination",
+        service3_desc: "Natural and perfect definition.",
+        totalLabel: "Estimated Total",
+        whatsappBtn: "Book Now"
+      },
+      es: {
+        tagline: "Próximamente",
+        bookBtn: "Reservar Cita",
+        servicesTitle: "Nuestros Servicios",
+        service1_title: "Limpieza Facial Profunda",
+        service1_desc: "Renovación total para tu piel.",
+        service2_title: "Manicura Gel Premium",
+        service2_desc: "Duración y brillo excepcional.",
+        service3_title: "Laminado de Cejas",
+        service3_desc: "Definición natural y perfecta.",
+        totalLabel: "Total Estimado",
+        whatsappBtn: "Reservar Ahora"
+      }
+    };
+
+    // --- Logic ---
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // 1. Mouse Glow Aura
+      const aura = document.getElementById('cursor-aura');
+      // Only enable on desktop to save mobile performance
+      if (window.matchMedia("(min-width: 769px)").matches) {
+        document.addEventListener('mousemove', (e) => {
+          const x = e.clientX;
+          const y = e.clientY;
+
+          // Direct style update for performance, or use requestAnimationFrame
+          aura.style.left = `${x}px`;
+          aura.style.top = `${y}px`;
+        });
+      }
+
+      // 2. Language Switcher
+      const langOptions = document.querySelectorAll('.lang-option');
+      const translatableElements = document.querySelectorAll('[data-key]');
+
+      langOptions.forEach(option => {
+        option.addEventListener('click', () => {
+          // Update active state
+          langOptions.forEach(opt => opt.classList.remove('active'));
+          option.classList.add('active');
+
+          // Update Text
+          const lang = option.getAttribute('data-lang');
+          translatableElements.forEach(el => {
+            const key = el.getAttribute('data-key');
+            if (translations[lang][key]) {
+              // Fade effect for text change
+              el.style.opacity = 0;
+              setTimeout(() => {
+                el.textContent = translations[lang][key];
+                el.style.opacity = 1;
+              }, 200);
+            }
+          });
+        });
+      });
+
+      // 3. Particles Logic (Simple & Lightweight)
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 40;
+
+      for (let i = 0; i < particleCount; i++) {
+        createParticle();
+      }
+
+      function createParticle() {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+
+        const size = Math.random() * 3 + 1;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${Math.random() * 100}vw`;
+        particle.style.top = `${Math.random() * 100}vh`; // Start scattered
+
+        const duration = Math.random() * 10 + 10;
+        const delay = Math.random() * 5;
+        particle.style.animationDuration = `${duration}s`;
+        particle.style.animationDelay = `${delay}s`;
+
+        particlesContainer.appendChild(particle);
+      }
+
+      // 4. Calculator Logic
+      const addButtons = document.querySelectorAll('.add-btn');
+      const totalDisplay = document.getElementById('total-display');
+      let total = 0;
+
+      addButtons.forEach(btn => {
+        btn.addEventListener('click', function () {
+          const price = parseFloat(this.getAttribute('data-price'));
+
+          if (this.classList.contains('active')) {
+            total -= price;
+            this.classList.remove('active');
+            this.textContent = '+';
+          } else {
+            total += price;
+            this.classList.add('active');
+            this.textContent = '✓';
+          }
+
+          // Format total (remove decimals if integers)
+          totalDisplay.textContent = `$${total}`;
+
+          // Animate total change
+          totalDisplay.style.transform = "scale(1.1)";
+          totalDisplay.style.color = "#fff";
+          setTimeout(() => {
+            totalDisplay.style.transform = "scale(1)";
+            totalDisplay.style.color = "var(--gold-color)";
+          }, 200);
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
