@@ -50,13 +50,14 @@
     /* --- Typography --- */
     h1,
     h2,
-    h3,
-    .price,
     .total-container {
       font-family: 'Playfair Display', serif;
       letter-spacing: 1px;
     }
 
+    h3,
+    .price,
+    .section-title,
     a,
     button,
     .lang-switch {
@@ -254,10 +255,16 @@
 
     .section-title {
       text-align: center;
-      font-size: 2.2rem;
+      font-size: 1.1rem;
+      /* Matched to book-btn aesthetic (approx) */
       color: var(--gold-color);
       margin-bottom: 60px;
-      font-weight: 400;
+      font-weight: 500;
+      /* Matched to book-btn */
+      letter-spacing: 3px;
+      /* Matched to book-btn */
+      text-transform: uppercase;
+      /* Matched to book-btn */
     }
 
     .service-item {
@@ -302,10 +309,16 @@
     }
 
     .service-text h3 {
-      font-size: 1.4rem;
+      font-size: 0.95rem;
+      /* Matched to book-btn size range */
       margin-bottom: 8px;
       color: #fff;
-      font-weight: 400;
+      font-weight: 500;
+      /* Matched to book-btn */
+      letter-spacing: 2px;
+      /* Slightly less than button for readability */
+      text-transform: uppercase;
+      /* Consistency */
     }
 
     .service-text p {
@@ -323,10 +336,13 @@
     }
 
     .price {
-      font-size: 1.5rem;
+      font-size: 1.1rem;
+      /* Adjusted for balance */
       color: var(--gold-color);
       margin-bottom: 15px;
       display: block;
+      font-weight: 500;
+      letter-spacing: 2px;
     }
 
     .add-btn {
@@ -382,12 +398,19 @@
       text-transform: uppercase;
       letter-spacing: 2px;
       display: block;
+      font-weight: 500;
+      /* Matched to book-btn */
     }
 
     .total-amount {
+      font-family: 'Inter', sans-serif;
+      /* Explicitly set Inter */
       font-size: 1.8rem;
       color: var(--gold-color);
-      font-weight: 400;
+      font-weight: 500;
+      /* Matched to book-btn */
+      letter-spacing: 2px;
+      /* Consistent spacing */
     }
 
     .whatsapp-btn {
