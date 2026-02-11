@@ -136,40 +136,50 @@
       left: 0;
       width: 100%;
       z-index: 1000;
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
       align-items: center;
-      padding: 20px 40px;
+      padding: 20px 60px;
       transition: all 0.4s ease;
       background: transparent;
     }
 
     .navbar.scrolled {
-      background: rgba(5, 5, 5, 0.95);
-      backdrop-filter: blur(10px);
+      background: rgba(5, 5, 5, 0.98);
+      backdrop-filter: blur(15px);
       border-bottom: 1px solid rgba(197, 160, 89, 0.3);
-      padding: 15px 40px;
+      padding: 12px 60px;
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-logo img {
+      height: 40px;
+      width: auto;
+      display: block;
     }
 
     .nav-links {
       display: flex;
-      gap: 30px;
+      justify-content: center;
+      gap: 35px;
     }
 
     .nav-links a {
       text-decoration: none;
       color: #fff;
       font-family: 'Inter', sans-serif;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
+      font-weight: 500;
       letter-spacing: 2px;
       text-transform: uppercase;
-      transition: color 0.3s;
+      transition: all 0.3s ease;
       position: relative;
+      opacity: 0.8;
     }
 
     .nav-links a:hover {
       color: var(--gold-color);
+      opacity: 1;
     }
 
     .nav-links a::after {
@@ -190,44 +200,40 @@
     .nav-right {
       display: flex;
       align-items: center;
-      gap: 20px;
+      justify-content: flex-end;
+      gap: 25px;
     }
 
     .login-btn {
       text-decoration: none;
       color: #fff;
       font-family: 'Inter', sans-serif;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       letter-spacing: 1px;
       text-transform: uppercase;
-      border: 1px solid var(--gold-color);
-      padding: 8px 20px;
+      border: 1px solid rgba(197, 160, 89, 0.5);
+      padding: 7px 18px;
       border-radius: 4px;
       transition: all 0.3s ease;
-      background: rgba(197, 160, 89, 0.1);
+      background: rgba(197, 160, 89, 0.05);
     }
 
     .login-btn:hover {
       background: var(--gold-color);
       color: #050505;
-      box-shadow: 0 0 15px rgba(197, 160, 89, 0.4);
+      border-color: var(--gold-color);
+      box-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
     }
 
-    /* --- Language Switcher (Moved to Nav) --- */
+    /* --- Language Switcher (In Nav) --- */
     .lang-switch {
-      /* Resetting fixed positioning */
       position: relative;
-      top: auto;
-      right: auto;
       color: var(--text-secondary);
-      font-size: 0.8rem;
-      font-weight: 500;
-      background: transparent;
-      padding: 0;
-      border: none;
+      font-size: 0.75rem;
+      font-weight: 600;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
     }
 
     .lang-switch:hover {
@@ -329,6 +335,75 @@
         opacity: 1;
         transform: translateY(0);
       }
+    }
+
+    /* --- Presentation Section --- */
+    .presentation-section {
+      padding: 120px 0;
+      background: #080808;
+      position: relative;
+      z-index: 10;
+    }
+
+    .presentation-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .presentation-image {
+      width: 100%;
+      height: 600px;
+      object-fit: cover;
+      border-radius: 4px;
+      border: 1px solid rgba(197, 160, 89, 0.2);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+    }
+
+    .presentation-content {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .presentation-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      color: var(--gold-color);
+      margin: 0;
+      line-height: 1.1;
+    }
+
+    .presentation-text {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      max-width: 500px;
+    }
+
+    .reserve-btn {
+      align-self: flex-start;
+      background: #000;
+      border: 1px solid var(--gold-color);
+      color: var(--gold-color);
+      padding: 18px 45px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      font-weight: 500;
+    }
+
+    .reserve-btn:hover {
+      background: var(--gold-color);
+      color: #000;
+      box-shadow: 0 0 30px rgba(197, 160, 89, 0.3);
     }
 
     /* --- Services --- */
@@ -582,36 +657,47 @@
       .price {
         margin-bottom: 0;
       }
+    }
 
-      #cursor-aura {
+    /* Disable aura on touch devices for performance */
+    #cursor-aura {
+      display: none;
+    }
+
+    @media (max-width: 991px) {
+      .navbar {
+        padding: 15px 30px;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .nav-links {
         display: none;
       }
 
-      /* Disable aura on touch devices for performance */
-      @media (max-width: 768px) {
-        .navbar {
-          padding: 15px 20px;
-          flex-direction: column;
-          gap: 15px;
-          background: rgba(5, 5, 5, 0.9);
-          /* Always dark on mobile for readability */
-        }
-
-        .nav-links {
-          display: none;
-          /* Hide links on mobile for now, can add hamburger later */
-        }
-
-        .nav-right {
-          width: 100%;
-          justify-content: space-between;
-        }
-
-        .login-btn {
-          font-size: 0.7rem;
-          padding: 6px 15px;
-        }
+      .presentation-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
       }
+
+      .presentation-content {
+        align-items: center;
+      }
+
+      .presentation-image {
+        height: 400px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 15px 20px;
+      }
+
+      .presentation-title {
+        font-size: 2.5rem;
+      }
+    }
   </style>
 </head>
 
@@ -625,12 +711,16 @@
 
   <!-- Navigation Bar -->
   <nav class="navbar" id="navbar">
+    <div class="nav-logo">
+      <img src="logo.png" alt="Celi-Esthetics">
+    </div>
+
     <div class="nav-links">
-      <a href="#about" data-key="nav_about">Sobre</a>
-      <a href="#services" data-key="nav_services">Servicios</a>
-      <a href="#reviews" data-key="nav_reviews">Reseñas</a>
-      <a href="#photos" data-key="nav_photos">Fotos</a>
-      <a href="#contact" data-key="nav_contact">Contacto</a>
+      <a href="#about" data-key="nav_about">ABOUT</a>
+      <a href="#services" data-key="nav_services">SERVICES</a>
+      <a href="#reviews" data-key="nav_reviews">REVIEWS</a>
+      <a href="#photos" data-key="nav_photos">PHOTOS</a>
+      <a href="#contact" data-key="nav_contact">CONTACT</a>
     </div>
 
     <div class="nav-right">
@@ -642,9 +732,7 @@
       </div>
 
       <!-- Login Button -->
-      <!-- <a href="#" class="login-btn" data-key="nav_login">Iniciar Sesión</a> -->
-      <!-- Using english default first as per original design tendency, but translation logic will handle it -->
-      <a href="#" class="login-btn" data-key="nav_login">Login</a>
+      <a href="#" class="login-btn" data-key="nav_login">LOGIN</a>
     </div>
   </nav>
 
@@ -656,6 +744,25 @@
     <p class="hero-tagline" data-key="tagline">BEAUTY IS FOR YOU</p>
     <a href="https://wa.me/15166697658" class="book-btn" data-key="bookBtn" target="_blank">Book Appointment</a>
   </header>
+
+  <!-- Presentation Section -->
+  <section id="about" class="presentation-section">
+    <div class="presentation-grid">
+      <div class="presentation-col">
+        <img
+          src="https://images.unsplash.com/photo-1540555700478-4be289fbecee?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+          alt="Celi Esthetics Clinical Spa" class="presentation-image">
+      </div>
+      <div class="presentation-content">
+        <h2 class="presentation-title">CELI ESTHETICS</h2>
+        <p class="presentation-text" data-key="welcome_text">
+          Experience the pinnacle of esthetic excellence. Our clinic combines medical precision with a luxury spa
+          atmosphere to provide transformative results for your skin and soul.
+        </p>
+        <a href="https://wa.me/15166697658" class="reserve-btn" target="_blank" data-key="reserve_btn">RESERVE NOW</a>
+      </div>
+    </div>
+  </section>
 
   <!-- Services Section -->
   <main id="services" class="container services-list">
@@ -750,7 +857,9 @@
         nav_reviews: "Reviews",
         nav_photos: "Photos",
         nav_contact: "Contact",
-        nav_login: "Login"
+        nav_login: "Login",
+        welcome_text: "Experience the pinnacle of esthetic excellence. Our clinic combines medical precision with a luxury spa atmosphere to provide transformative results for your skin and soul.",
+        reserve_btn: "RESERVE NOW"
       },
       es: {
         tagline: "LA BELLEZA ES PARA TI",
@@ -764,12 +873,14 @@
         service3_desc: "Definición natural y perfecta.",
         totalLabel: "Total Estimado",
         whatsappBtn: "Reservar Ahora",
-        nav_about: "Sobre Nosotros",
-        nav_services: "Servicios",
-        nav_reviews: "Reseñas",
-        nav_photos: "Fotos",
-        nav_contact: "Contacto",
-        nav_login: "Iniciar Sesión"
+        nav_about: "SOBRE",
+        nav_services: "SERVICIOS",
+        nav_reviews: "RESEÑAS",
+        nav_photos: "FOTOS",
+        nav_contact: "CONTACTO",
+        nav_login: "INICIAR SESIÓN",
+        welcome_text: "Experimente la cumbre de la excelencia estética. Nuestra clínica combina la precisión médica con una atmósfera de spa de lujo para brindar resultados transformadores para su piel y alma.",
+        reserve_btn: "RESERVA AHORA"
       }
     };
 
